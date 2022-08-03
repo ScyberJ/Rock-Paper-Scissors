@@ -1,13 +1,7 @@
 const rules = {
-  rock: (option) => {
-    option === "scissors" ? true : false;
-  },
-  paper: (option) => {
-    option === "rock" ? true : false;
-  },
-  scissors: (option) => {
-    option === "paper" ? true : false;
-  },
+  rock: (option) => (option === "scissors" ? true : false),
+  paper: (option) => (option === "rock" ? true : false),
+  scissors: (option) => (option === "paper" ? true : false),
 };
 
 const playRound = (playerSelection, computerSelection) => {
@@ -31,4 +25,4 @@ const getComputerSelection = () =>
 const playerSelection = "rock";
 const computerSelection = getComputerSelection();
 
-console.log(computerSelection);
+console.log(playRound(playerSelection, computerSelection));
