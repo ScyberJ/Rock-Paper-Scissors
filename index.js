@@ -20,8 +20,8 @@ const playRound = (playerSelection, computerSelection) => {
   }
 };
 
-const game = () => {
-  for (let i = 0; i < 5; i++) {
+const game = (rounds) => {
+  for (let i = 0; i < rounds; i++) {
     const playerSelection = prompt(
       "Please choose between rock, paper or scissors"
     );
@@ -38,4 +38,4 @@ const game = () => {
 const getComputerSelection = () =>
   ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
 
-game();
+game(5);
