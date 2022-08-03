@@ -23,8 +23,12 @@ const playRound = (playerSelection, computerSelection) => {
 const getComputerSelection = () =>
   ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
 
-const playerSelection = "rock";
+const playerSelection = prompt("Please choose between rock, paper or scissors");
 const computerSelection = getComputerSelection();
 
-prompt("Please choose between rock,paper or scissors");
-console.log(playRound(playerSelection, computerSelection));
+const result = playRound(playerSelection, computerSelection);
+console.log(result);
+
+const heading = document.createElement("h1");
+heading.innerHTML = result;
+document.body.append(heading);
