@@ -20,15 +20,22 @@ const playRound = (playerSelection, computerSelection) => {
   }
 };
 
+const game = () => {
+  for (let i = 0; i < 5; i++) {
+    const playerSelection = prompt(
+      "Please choose between rock, paper or scissors"
+    );
+    const computerSelection = getComputerSelection();
+
+    const result = playRound(playerSelection, computerSelection);
+    console.log(result);
+    const heading = document.createElement("h1");
+    heading.innerHTML = result;
+    document.body.append(heading);
+  }
+};
+
 const getComputerSelection = () =>
   ["rock", "paper", "scissors"][Math.floor(Math.random() * 3)];
 
-const playerSelection = prompt("Please choose between rock, paper or scissors");
-const computerSelection = getComputerSelection();
-
-const result = playRound(playerSelection, computerSelection);
-console.log(result);
-
-const heading = document.createElement("h1");
-heading.innerHTML = result;
-document.body.append(heading);
+game();
