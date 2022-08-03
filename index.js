@@ -8,6 +8,9 @@ const playRound = (playerSelection, computerSelection) => {
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
 
+  if (!rules[playerSelection])
+    return "Please choose between rock, paper or scissors";
+
   if (playerSelection === computerSelection) return "draw";
 
   if (rules[playerSelection](computerSelection)) {
@@ -15,8 +18,6 @@ const playRound = (playerSelection, computerSelection) => {
   } else {
     return `You lose: ${playerSelection} is beaten by ${computerSelection}`;
   }
-
-  return "Please choose between rock, paper or scissors";
 };
 
 const getComputerSelection = () =>
