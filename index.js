@@ -23,7 +23,7 @@ const playRound = (playerSelection, computerSelection) => {
 	if (
 		["rock", "paper", "scissors"].every((choice) => choice !== playerSelection)
 	)
-		return "Please choose between rock, paper or scissors";
+		battleResult.innerHTML = "Please choose between rock, paper or scissors";
 
 	if (playerSelection === computerSelection) {
 
@@ -33,6 +33,7 @@ const playRound = (playerSelection, computerSelection) => {
 		computerSide.classList.remove('winner')
 		computerSide.classList.remove('loser')
 		computerSide.classList.add('draw')
+		battleResult.innerHTML = "draw";
 		return "draw"
 	}
 
@@ -44,7 +45,14 @@ const playRound = (playerSelection, computerSelection) => {
 		computerSide.classList.remove('winner')
 		computerSide.classList.remove('draw')
 		computerSide.classList.add('loser')
-		return `You win: ${playerSelection} beats ${computerSelection}`;
+		if (getPlayerScore() === 5) {
+			resetPlayerScore()
+			resetComputerScore()
+			battleResult.innerHTML = 'Player Wins the game'
+		} else {
+			battleResult.innerHTML = `You win: ${playerSelection} beats ${computerSelection}`
+		}
+		return getPlayerScore() === 5 ? 'Player Wins the game' : `You win: ${playerSelection} beats ${computerSelection}`;
 	} else {
 		incrementComputerScore();
 		playerSide.classList.remove('winner')
@@ -53,7 +61,14 @@ const playRound = (playerSelection, computerSelection) => {
 		computerSide.classList.remove('loser')
 		computerSide.classList.remove('draw')
 		computerSide.classList.add('winner')
-		return `You lose: ${playerSelection} is beaten by ${computerSelection}`;
+		if (getComputerScore() === 5) {
+			resetPlayerScore()
+			resetComputerScore()
+			battleResult.innerHTML = 'Computer Wins the game'
+		} else {
+			battleResult.innerHTML = `You lose: ${playerSelection} is beaten by ${computerSelection}`
+		}
+		return getComputerScore() === 5 ? 'Computer Wins' : `You lose: ${playerSelection} is beaten by ${computerSelection}`;
 	}
 };
 
@@ -144,6 +159,9 @@ const makeSide = (side) => {
 			score = 0;
 			scoreEl.innerHTML = score;
 		},
+		() => {
+			return score
+		}
 	];
 };
 
@@ -170,13 +188,18 @@ const [
 	replaceWithPlayerChoice,
 	incrementPlayerScore,
 	resetPlayerScore,
+	getPlayerScore,
 ] = makeSide("player");
 const [
 	computerSide,
 	replaceWithComputerChoice,
 	incrementComputerScore,
 	resetComputerScore,
+	getComputerScore,
 ] = makeSide("computer");
+
+const battleResult = document.createElement('h2')
+battleResult.className = 'battle-result'
 
 // appends
 selectionContainer.append(selectionHeader);
@@ -193,3 +216,5 @@ sidesContainer.append(playerSide);
 sidesContainer.append(computerSide);
 
 document.body.append(sidesContainer);
+
+document.body.append(battleResult)
