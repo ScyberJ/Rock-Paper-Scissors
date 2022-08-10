@@ -46,11 +46,11 @@ body {
   align-items: center;
 }
 
-.weapon-container:hover {
+div.weapon-choices-container .weapon-container:hover {
   transform: scale(1.1);
 }
 
-.weapon-container:hover > span {
+div.weapon-choices-container .weapon-container:hover > span {
   color: var(--primary-color);
 }
 
@@ -74,19 +74,27 @@ body {
   background-color: var(--secondary-color);
   display: flex;
   justify-content: center;
-  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .side-container {
   width: 100%;
   padding: 50px 5px;
   color: white;
+  transition: all 0.4s;
 }
 
 .side-container.winner {
   background-color: var(--winner);
+  transition: all 0.4s;
 }
 
 .side-container.loser {
   background-color: var(--loser);
+  flex-shrink: 2;
+  transition: all 0.4s;
+}
+
+.side-container.draw {
+  background-color: var(--primary-color);
 }

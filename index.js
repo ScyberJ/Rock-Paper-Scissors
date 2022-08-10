@@ -25,13 +25,34 @@ const playRound = (playerSelection, computerSelection) => {
 	)
 		return "Please choose between rock, paper or scissors";
 
-	if (playerSelection === computerSelection) return "draw";
+	if (playerSelection === computerSelection) {
+
+		playerSide.classList.remove('winner')
+		playerSide.classList.remove('loser')
+		playerSide.classList.add('draw')
+		computerSide.classList.remove('winner')
+		computerSide.classList.remove('loser')
+		computerSide.classList.add('draw')
+		return "draw"
+	}
 
 	if (choices[playerSelection].beats(computerSelection)) {
 		incrementPlayerScore();
+		playerSide.classList.remove('loser')
+		playerSide.classList.remove('draw')
+		playerSide.classList.add('winner')
+		computerSide.classList.remove('winner')
+		computerSide.classList.remove('draw')
+		computerSide.classList.add('loser')
 		return `You win: ${playerSelection} beats ${computerSelection}`;
 	} else {
 		incrementComputerScore();
+		playerSide.classList.remove('winner')
+		playerSide.classList.remove('draw')
+		playerSide.classList.add('loser')
+		computerSide.classList.remove('loser')
+		computerSide.classList.remove('draw')
+		computerSide.classList.add('winner')
 		return `You lose: ${playerSelection} is beaten by ${computerSelection}`;
 	}
 };
